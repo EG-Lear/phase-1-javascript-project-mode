@@ -20,7 +20,7 @@ function fetchCities(action) { //fetchs from api and then executes the desired f
     .catch(err => console.error(err))
 }
 
-function fetchSingle() {
+function fetchSingle() { //fetches information about a single city
     fetch(baseUrl + `/${this.id}`, {
         "method": "GET",  
         "headers": { 
@@ -44,7 +44,7 @@ function initialRender(cities) { //does the initial render of cities to page
     })
 }
 
-function moreInfo(res) {
+function moreInfo(res) { //displays more information about the selected city
     const loc = res.data
     document.getElementById('cityNames').innerHTML = ''
     let adding = document.createElement('p')
@@ -54,7 +54,7 @@ function moreInfo(res) {
     document.getElementById('backBtn').disabled = false
 }
 
-function seaLevel(level) {
+function seaLevel(level) { //determines where the city is relative to sea level and chooses what text to display
     if (level > 0) {
         return `${level} meters above`
     } else if (level < 0) {
@@ -64,27 +64,8 @@ function seaLevel(level) {
     }
 }
 
-function goBack() {
+function goBack() { //adds functionality to the back button
     document.getElementById('cityInfo').innerHTML = ''
     fetchCities(initialRender)
     document.getElementById('backBtn').disabled = true
 }
-
-// city: "Brooklyn"
-// country: "United States of America"
-// countryCode: "US"
-// deleted: false
-// distance: null
-// elevationMeters: 15
-// id: 122111
-// latitude: 40.692777777
-// longitude: -73.990277777
-// name: "Brooklyn"
-// population: 2636735
-// region: "New York"
-// regionCode: "NY"
-// timezone: "America__New_York"
-// type: "CITY"
-// wikiDataId: "Q18419"
-
-//`The city of ${loc.city} is in the state of ${res.data.region}.  It is sits ${loc.elevationMeters} above sea level at ${loc.longitude} longitude and ${loc.latitude}.  It has a population of ${loc.population}.
