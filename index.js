@@ -17,8 +17,8 @@ function fetchCities(action) { //fetchs from api and then executes the desired f
     .catch(err => console.error(err))
 }
 
-function fetchSingle(id) {
-    fetch(baseUrl + `/${id}`, {
+function fetchSingle() {
+    fetch(baseUrl + `/${this.id}`, {
         "method": "GET",  
         "headers": { 
             "x-rapidapi-key": "4010cdd83cmsh8cb2b7ba6ad0987p1d44aejsn8d7efd02cd68",
@@ -26,7 +26,7 @@ function fetchSingle(id) {
         }
     })
     .then(res => res.json())
-    .then(res => console.log(res))
+    .then(res => moreInfo(res))
     .catch(err => console.error(err))
 }
 
@@ -37,8 +37,11 @@ function initialRender(cities) { //does the initial render of cities to page
         adding.textContent = city.name
         adding.id = city.id
         document.getElementById('city names').appendChild(adding)
+        document.getElementById(`${city.id}`).addEventListener('click', fetchSingle)
     })
 }
 
-// https://wft-geo-db.p.rapidapi.com/v1/geo/cities/
-// 4010cdd83cmsh8cb2b7ba6ad0987p1d44aejsn8d7efd02cd68
+function moreInfo(res) {
+    console.log(res)
+}
+
